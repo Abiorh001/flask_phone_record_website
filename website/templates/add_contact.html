@@ -1,0 +1,50 @@
+{% extends "contacts.html" %}
+{% block title %} Add Contact {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Add new contact here!</h1>
+
+    <form action="/add_contact" method="POST">
+            {{ form.csrf_token }}
+        <div class="form-group">
+           <p> {{ form.name.label }}</p>
+           <p> {{ form.name(class="form-control") }} </p>
+                {% for error in form.name.errors %}
+                    <small> {{ error }}</small>
+                {% endfor %}
+        </div>
+        <div class="form-group">
+          <p>  {{ form.phone_number.label }} </p>
+          <p>  {{ form.phone_number(class="form-control") }} </p>
+                {% for error in form.phone_number.errors %}
+                    <small> {{ error }}</small>
+                {% endfor %}
+
+        </div>
+        <div class="form-group">
+           <p> {{ form.email.label }} </p>
+           <p>  {{ form.email(class="form-control") }} </p>
+        </div>
+        <div class="form-group">
+           <p> {{ form.state.label }} </p>
+           <p> {{ form.state(class="form-control") }}</p>
+
+        </div>
+        <div class="form-group">
+           <p> {{ form.city.label }} </p>
+           <p> {{ form.city(class="form-control") }} </p>
+        </div>
+
+        <div class="form-group">
+           <p> {{ form.country.label }} </p>
+           <p> {{ form.country(class="form-control") }} </p>
+        </div>
+        <div class="form-group">
+            <p> {{ form.submit() }} </p>
+        </div>
+    </form>
+{% endblock %}
