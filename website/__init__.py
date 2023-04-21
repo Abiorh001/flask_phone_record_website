@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, redirect
+from flask import Flask, Blueprint, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
     
     app.config["SECRET_KEY"] = "12J3RHRR744"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://username:password@ip:port/dbname"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:Lucifer_001@localhost:3306/phonecontactdb"
     app.config['WTF_CSRF_ENABLED'] = True
     
     # for email config
@@ -45,8 +45,13 @@ def create_app():
     csrf.init_app(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = "auth.login"
     login_manager.init_app(app)
+    
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        return redirect(url_for('views.landing_page'))
+
+
 
     @login_manager.user_loader
     def load_user(id):

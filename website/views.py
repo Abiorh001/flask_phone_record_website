@@ -1,4 +1,4 @@
-from flask import Flask,Blueprint, url_for,flash, redirect, render_template, abort, request
+from flask import Flask,Blueprint, url_for, flash, redirect, render_template, abort, request
 from flask_login import login_required, current_user
 from wtforms import Form, StringField, PasswordField, validators, SubmitField, TextAreaField
 from .models import db, User, Contact, UserMixin
@@ -13,11 +13,17 @@ from flask_login import login_user, login_required, logout_user, current_user
 views = Blueprint("views", __name__)
 
 
-@views.route("/")
+@views.route("/home")
 @login_required
 def home():
-    return render_template("base.html", user=current_user)
+    return render_template("home.html", user=current_user, username = current_user.username)
 
+
+
+
+@views.route('/')
+def landing_page():
+    return render_template('landing.html')
 
 
 @views.route("/user")

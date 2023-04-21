@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %} Sign Up {% endblock %}
-
-{% block head %}
-    <link rel="stylesheet" href="{{ url_for("static", filename="style.css") }}">
+{% block head %} 
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
 {% endblock %}
 
 {% block content %}
-    <h1>Sign Up here!</h1>
-
-    <form action="/auth/signup" method="POST">
+  <div class="signup-form">
+    <h1 class="signup-heading">REGISTRATION</h1>
+    <h3 class="signup-subheading">Create New Account Here!</h3>  
+        <form action="/auth/signup" method="POST">
         {{ form.csrf_token }}
 
         <div class="form-group">
@@ -53,10 +53,9 @@
             {{ form.submit(class="btn btn-primary") }}
         </div>
     </form>
-
-    <div>
-        <p> Already a user</p>
-        <a href="{{ url_for('auth.login') }}">LOGIN</a>
+    <div class="signup-link">
+      <a href="{{ url_for('auth.login')}}">Already a user? Login</a>
     </div>
+  </div>
 {% endblock %}
 

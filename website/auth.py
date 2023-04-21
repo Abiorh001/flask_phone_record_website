@@ -55,10 +55,10 @@ def signup():
                 
     
 
-                msg=Message("Thank You for your registration", sender="", recipients=[email])
-                link = url_for("views.home", _external=True)
-                msg.body = f"You can click here to login immediately {link}"
-                mail.send(msg)
+                #msg=Message("Thank You for your registration", sender="", recipients=[email])
+                #link = url_for("views.home", _external=True)
+                #msg.body = f"You can click here to login immediately {link}"
+                #mail.send(msg)
                 #flash("Confirmation email sent succesfully", category="success")
                 return redirect(url_for('views.home'))
 
@@ -104,7 +104,7 @@ def login():
 
 class ForgetPassword(FlaskForm):
     email = StringField('Email Address',[validators.DataRequired(message="Email is required"),validators.Length(min=6, max=50)])
-    password = PasswordField('New Password', [validators.DataRequired(message="Password is required"),validators.EqualTo('confirm', message='Passwords must match')])
+    password = PasswordField('New Password', [validators.DataRequired(message="Password is required"),validators.Length(min=6, max=50),validators.EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat Password')
 
     submit = SubmitField('Change Password')
@@ -120,10 +120,10 @@ def forget_password():
             user.password = generate_password_hash(password,method="sha256")
             db.session.commit()
             flash("password changed successfully!", category="sucess")
-            return redirect(url_for("views.home"))
+            return redirect(url_for("auth.login"))
         else:
             flash("No email address associated with this account", category="error")
-            return redirect(url_for("views.home"))
+            return redirect(url_for("auth.signup"))
     return render_template("forget_password.html", form=form)
 
 
@@ -162,4 +162,4 @@ def edit_profile():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("auth.login"))
+    return redirect(url_for("views.landing_page"))

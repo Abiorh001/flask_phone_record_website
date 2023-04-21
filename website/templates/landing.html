@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Malzahra Website</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        element.style {
+            background-color: #bd2e4b;
+        }
+        body {
+            background-color: #8B00FF;
+        }
+        .container {
+            background-color: red;
+            padding: 50px;
+            margin-top: 50px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #36454F;
+        }
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: #707070;
+        }
+        .btn {
+            font-size: 1.25rem;
+            padding: 12px 24px;
+            margin-right: 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .btn-primary {
+            background-color: #007BFF;
+            border-color: #007BFF;
+        }
+        .btn-primary:hover {
+            background-color: #0062CC;
+            border-color: #0062CC;
+        }
+        .btn-secondary {
+            background-color: #6C757D;
+            border-color: #6C757D;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #5A6268;
+            border-color: #5A6268;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="background-color: #EDE7F6;">
+        <h1>Welcome to Malzahra Website</h1>
+        <p>Thank you for visiting our website. We offer a comprehensive phone book record service that allows you to easily manage your contacts online. Our service is secure and easy to use, and you can export your contacts as CSV, PDF, or TXT files. To get started, simply sign up for an account or log in if you already have one.</p>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Log In</a>
+        <a href="{{ url_for('auth.signup') }}" class="btn btn-secondary">Sign Up</a>
+    </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

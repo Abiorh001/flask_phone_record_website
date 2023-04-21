@@ -43,8 +43,7 @@
             <a class="nav-item nav-link" href="{{ url_for('views.contacts') }}">CONTACTS</a>
             <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">LOGOUT</a>
             {% else %}
-            <a class="nav-item nav-link active" href="{{ url_for('auth.login') }}">LOGIN<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="{{ url_for('auth.signup') }}">SIGNUP</a>
+            <a class="nav-item nav-link" href="{{ url_for('views.landing_page') }}">HOME PAGE</a>
             {% endif %}
           </div>
         </div>
