@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     location = db.Column(db.String(64))
     about_me = db.Column(db.Text())
     member_since = db.Column(db.DateTime(), default=datetime.datetime.utcnow)
-    contact = db.relationship("Contact", backref="user", lazy="dynamic")
+    contact = db.relationship("Contact", backref="user", lazy="dynamic", cascade="all,delete")
 
     def ping(self):
         self.last_seen = datetime.utcnow()
@@ -35,6 +35,6 @@ class Contact(db.Model,UserMixin):
     state = db.Column(db.String(256))
     city = db.Column(db.String(256))
     country = db.Column(db.String(256))
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"))
 
 
